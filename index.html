@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz App</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<div id="header">
+  <h1>Quiz App</h1>
+  <label id="file-label" for="file-input">&#128196; Open .gift file</label>
+  <input type="file" id="file-input" accept=".gift,.txt">
+  <span id="file-name">No file loaded</span>
+  <button id="btn-save-offline">&#128190; Save for offline</button>
+</div>
+
+<div id="stats-bar">
+  <div class="stat">Answered: <span id="stat-answered">0</span></div>
+  <div class="stat">Correct: <span id="stat-correct">0</span></div>
+  <div class="stat">Wrong: <span id="stat-wrong">0</span></div>
+  <div class="stat" id="stat-score">Score: <span id="stat-pct">&#8212;</span></div>
+  <div class="stat">Total: <span id="stat-total">0</span></div>
+</div>
+
+<div id="progress-wrap"><div id="progress-fill"></div></div>
+
+<div id="controls">
+  <button class="btn" id="btn-wrong">Show Wrong Only</button>
+  <button class="btn" id="btn-unanswered">Show Unanswered</button>
+  <button class="btn" id="btn-shuffle">Shuffle</button>
+  <button class="btn" id="btn-reset">Reset All</button>
+</div>
+
+<div id="topic-tabs"></div>
+
+<div id="main">
+  <div id="error-state"></div>
+  <div id="quiz-container"></div>
+  <div id="empty-state">
+    <h2>Open a GIFT file to begin</h2>
+    <p>Click "Open .gift file" above and select a <code>.gift</code> or <code>.txt</code> file.</p>
+    <pre>::Q1 | Topic::
+Question text? {
+  =Correct answer
+  ~Wrong answer
+  ~Wrong answer
+}
+
+// EXPLANATION: Shown after answering.</pre>
+  </div>
+</div>
+
+<script src="js/parser.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/offline.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

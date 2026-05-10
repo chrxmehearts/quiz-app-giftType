@@ -1,0 +1,71 @@
+// EXPLANATION: Visualforce handles Classic overrides; Lightning components handle LE overrides.
+::Q1 | UI::
+A developer must override the Contact Edit button in both Salesforce Classic and Lightning Experience. What should the developer use? {
+  =A Visualforce page in Classic and a Lightning component in LE
+  ~A Lightning page in Classic and a Visualforce page in LE
+  ~A Lightning component in Classic and a Lightning component in LE
+  ~A Visualforce page in Classic and a Visualforce page in LE
+}
+
+// EXPLANATION: Declarative tools are Record-Triggered Flow and Validation Rules.
+::Q2 | Automation::
+Universal Containers decides to use purely declarative development. Which two options build the business logic layer? {
+  ~%50%Record-Triggered Flow
+  ~%-50%Remote Actions
+  ~%50%Validation Rules
+  ~%-50%Batch Jobs
+}
+
+// EXPLANATION: with sharing enforces org sharing rules at the SOQL/DML level.
+::Q3 | Security::
+A custom Account search tool uses a private sharing model. Users report they can see Accounts they do not own. What should the developer use to enforce sharing? {
+  ~Use the Account.sharing keyword on the class declaration
+  ~Use schema describe calls to determine access
+  ~Use the UserInfo Apex class to filter SOQL queries
+  =Use the with sharing keyword on the class declaration
+}
+
+// EXPLANATION: @future methods run asynchronously and cannot return values or accept sObject parameters.
+::Q4 | Apex::
+A developer needs to make a callout from a trigger. What is the correct approach? {
+  =Call a method annotated with @future(callout=true)
+  ~Make the callout directly inside the trigger
+  ~Use a synchronous Apex method
+  ~Use a platform event to trigger a flow
+}
+
+// EXPLANATION: SOQL injection occurs when user input is concatenated directly into a SOQL string.
+::Q5 | Security::
+A developer is building a search feature. Which coding practice prevents SOQL injection? {
+  ~Concatenating user input directly into query strings
+  =Using bind variables in SOQL queries
+  ~Encoding query strings with EncodingUtil
+  ~Limiting queries to 100 records
+}
+
+// EXPLANATION: Governor limits apply per transaction; Apex has a 100 SOQL query limit per synchronous transaction.
+::Q6 | Apex::
+Which two statements are true about Salesforce governor limits? {
+  ~%50%They apply per Apex transaction
+  ~%-50%They reset after each DML statement
+  ~%50%Asynchronous Apex has higher limits than synchronous
+  ~%-50%They only apply in production orgs
+}
+
+// EXPLANATION: A master-detail relationship rolls up and cascade-deletes; lookup is a loose reference.
+::Q7 | Data Model::
+What happens to detail records when a master record is deleted in a master-detail relationship? {
+  =They are automatically deleted (cascade delete)
+  ~They become orphaned with a null lookup field
+  ~Deletion of the master is prevented
+  ~They are archived but not deleted
+}
+
+// EXPLANATION: Platform Events use publish/subscribe model and can be used to trigger flows or Apex.
+::Q8 | Automation::
+A developer needs to decouple two systems so that one system can notify another without tight integration. Which Salesforce feature is most appropriate? {
+  =Platform Events
+  ~Workflow Rules
+  ~Process Builder
+  ~Batch Apex
+}

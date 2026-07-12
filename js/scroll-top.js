@@ -74,10 +74,32 @@
     }
   }, { passive: true });
 
-  btn.addEventListener('click', () => {
+  const SCROLL_DURATION_MS = 400;
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function scrollToTop() {
+    const start = window.scrollY;
+    if (start === 0) return;
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-  });
+    if (reduceMotion) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const startTime = performance.now();
+    function step(now) {
+      const progress = Math.min((now - startTime) / SCROLL_DURATION_MS, 1);
+      window.scrollTo(0, start * (1 - easeOutCubic(progress)));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  btn.addEventListener('click', scrollToTop);
 
   updateVisibility();
 })();

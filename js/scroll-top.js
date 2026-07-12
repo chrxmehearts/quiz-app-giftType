@@ -14,33 +14,33 @@
       position: fixed;
       right: 20px;
       bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-      width: 46px;
-      height: 46px;
-      border: none;
-      border-radius: 50%;
-      background: var(--primary, #4f6ef7);
-      color: #fff;
+      width: 42px;
+      height: 42px;
+      border: 1.5px solid var(--accent, #0f766e);
+      border-radius: 9px;
+      background: var(--surface, #fff);
+      color: var(--accent, #0f766e);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(0,0,0,.2);
+      box-shadow: var(--card-shadow, 0 1px 2px rgba(0,0,0,.15));
       opacity: 0;
       visibility: hidden;
       transform: translateY(16px) scale(.9);
-      transition: opacity .25s ease, transform .25s ease, background .15s ease, visibility 0s linear .25s;
+      transition: opacity .25s ease, transform .25s ease, background .15s ease, color .15s ease, visibility 0s linear .25s;
       z-index: 1000;
     }
     #btn-scroll-top.visible {
       opacity: 1;
       visibility: visible;
       transform: translateY(0) scale(1);
-      transition: opacity .25s ease, transform .25s ease, background .15s ease;
+      transition: opacity .25s ease, transform .25s ease, background .15s ease, color .15s ease;
     }
-    #btn-scroll-top:hover { background: var(--primary-hover, #3a58e8); }
+    #btn-scroll-top:hover { background: var(--accent, #0f766e); color: var(--accent-ink, #f2fbfa); }
     #btn-scroll-top:active { transform: scale(.92); }
-    #btn-scroll-top:focus-visible { outline: 2px solid var(--primary, #4f6ef7); outline-offset: 3px; }
-    #btn-scroll-top svg { width: 20px; height: 20px; pointer-events: none; }
+    #btn-scroll-top:focus-visible { outline: 2px solid var(--accent, #0f766e); outline-offset: 3px; }
+    #btn-scroll-top svg { width: 18px; height: 18px; pointer-events: none; }
 
     @media (prefers-reduced-motion: reduce) {
       #btn-scroll-top { transition: opacity .01ms linear, visibility .01ms linear; }

@@ -69,3 +69,34 @@ A developer needs to decouple two systems so that one system can notify another 
   ~Process Builder
   ~Batch Apex
 }
+
+// EXPLANATION: A trigger with no recursion guard re-fires on every DML inside itself, so an update in the trigger body causes the trigger to run again for the same records.
+::Q9 | Apex::
+A developer writes the following before-update trigger on Account, intended to append a suffix to the Name field exactly once.
+
+trigger AccountTrigger on Account (before update) {
+    for (Account acc : Trigger.new) {
+        acc.Name = acc.Name + ' - Reviewed';
+        update acc;
+    }
+}
+
+What is wrong with this trigger, and what is the correct fix? {
+  =Calling update inside a before-update trigger re-fires the trigger recursively and also throws, since before-triggers should mutate Trigger.new directly instead of issuing DML
+  ~Nothing is wrong; the trigger works as intended
+  ~The for loop should use Trigger.old instead of Trigger.new
+  ~The suffix should be appended in an after-update trigger instead
+}
+
+// EXPLANATION: SOAP callouts require the WSDL2Apex-generated class and cannot be made directly from a trigger context; queueable/future is needed to defer the callout outside the trigger's synchronous DML context.
+::Q10 | Integration::
+Universal Containers wants to notify an external SOAP-based inventory system whenever a Product2 record's stock quantity changes.
+
+The integration must not block the user's save operation, and must still run reliably if the external system is briefly unavailable.
+
+Which two approaches satisfy this requirement? {
+  ~%50%Make the callout from a Queueable Apex class enqueued from the trigger
+  ~%-50%Make the callout directly inside the trigger's before-update context
+  ~%50%Make the callout from a @future(callout=true) method invoked from the trigger
+  ~%-50%Make the callout synchronously from a Visualforce page controller's constructor
+}
